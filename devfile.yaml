@@ -35,7 +35,7 @@ components:
       cpuRequest: '1'
       cpuLimit: '3'
       mountSources: true
-      image: registry.redhat.io/devspaces/udi-rhel8latest
+      image: registry.redhat.io/devspaces/udi-rhel8:latest
       
   - name: dotnet
     container:
