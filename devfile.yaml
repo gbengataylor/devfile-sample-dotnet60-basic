@@ -54,34 +54,34 @@ components:
           targetPort: 8080
 
       
-  - name: image-build
-    image:
-      imageName: 'dotnet-image:latest'
-      dockerfile:
-        uri: docker/Dockerfile
-        buildContext: .
-        rootRequired: false
-  - name: kubernetes-deploy
-    attributes:
-      deployment/replicas: 1
-      deployment/cpuRequest: 10m
-      deployment/memoryRequest: 100Mi
-      deployment/container-port: 8081
-    kubernetes:
-      uri: kubernetes/deployment.yaml
-      endpoints:
-        - name: http-8081
-          targetPort: 8081
-          path: /
-          secure: true
-  - name: kubernetes-service
-    attributes:
-      deployment/replicas: 1
-      deployment/cpuRequest: 10m
-      deployment/memoryRequest: 100Mi
-      deployment/container-port: 8081
-    kubernetes:
-      uri: kubernetes/service.yaml
+  # - name: image-build
+  #   image:
+  #     imageName: 'dotnet-image:latest'
+  #     dockerfile:
+  #       uri: docker/Dockerfile
+  #       buildContext: .
+  #       rootRequired: false
+  # - name: kubernetes-deploy
+  #   attributes:
+  #     deployment/replicas: 1
+  #     deployment/cpuRequest: 10m
+  #     deployment/memoryRequest: 100Mi
+  #     deployment/container-port: 8081
+  #   kubernetes:
+  #     uri: kubernetes/deployment.yaml
+  #     endpoints:
+  #       - name: http-8081
+  #         targetPort: 8081
+  #         path: /
+  #         secure: true
+  # - name: kubernetes-service
+  #   attributes:
+  #     deployment/replicas: 1
+  #     deployment/cpuRequest: 10m
+  #     deployment/memoryRequest: 100Mi
+  #     deployment/container-port: 8081
+  #   kubernetes:
+  #     uri: kubernetes/service.yaml
 commands:
   - id: build
     exec:
@@ -99,21 +99,21 @@ commands:
       group:
         isDefault: true
         kind: run
-  - id: build-image
-    apply:
-      component: image-build
-  - id: deploy-deployment
-    apply:
-      component: kubernetes-deploy
-  - id: deploy-service
-    apply:
-      component: kubernetes-service
-  - id: deploy
-    composite:
-      commands:
-        - build-image
-        - deploy-deployment
-        - deploy-service
-      group:
-        isDefault: true
-        kind: deploy
+  # - id: build-image
+  #   apply:
+  #     component: image-build
+  # - id: deploy-deployment
+  #   apply:
+  #     component: kubernetes-deploy
+  # - id: deploy-service
+  #   apply:
+  #     component: kubernetes-service
+  # - id: deploy
+  #   composite:
+  #     commands:
+  #       - build-image
+  #       - deploy-deployment
+  #       - deploy-service
+  #     group:
+  #       isDefault: true
+  #       kind: deploy
