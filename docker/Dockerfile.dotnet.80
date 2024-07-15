@@ -1,0 +1,15 @@
+FROM registry.access.redhat.com/ubi8/dotnet-80:8.0
+
+USER 0
+#RUN dnf update && \
+#    dnf upgrade -y && \
+RUN  dnf install -y git && \
+    dnf clean all -y && \
+# ym cache files may still exist (and quite large in size)
+    rm -rf /var/cache/dnf/*
+
+#USER 1001
+USER $APP_UID
+
+#CMD /usr/libexec/s2i/usage
+CMD /bin/bash
