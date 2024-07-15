@@ -12,7 +12,7 @@ metadata:
   tags:
     - .NET
   attributes:
-#     alpha.dockerimage-port: 8081
+    alpha.dockerimage-port: 8081
 # starterProjects:
 #   - name: s2i-example
 #     git:
