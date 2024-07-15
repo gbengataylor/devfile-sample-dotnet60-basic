@@ -6,7 +6,7 @@ USER 0
 RUN  dnf install -y git && \
     dnf clean all -y && \
 # ym cache files may still exist (and quite large in size)
-    rm -rf /var/cache/dnf/*
+    rm -rf /var/cache/yum/*
 
 USER 1001
 
